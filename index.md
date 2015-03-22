@@ -27,7 +27,7 @@ Then go to next slide ...
 
 --- .class #id 
 
-## Help for searching for lowest standard deviation
+## Help for searching lowest standard deviation
 To find Lineair Regression Line, we have to got lowest SD globally, not locally.
 It is not easy to estimate visually. So there is Help is at the Shiny app: it "remembers" a lowest SD we found so far and it draws corresponding grey line.
 <img src="assets/fig/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
