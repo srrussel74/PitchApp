@@ -14,6 +14,10 @@ knit        : slidify::knit2slides
 ## Start with creating data ... 
 We learn that Lineair Regression Line for the data with certain values of intercept and slope has got the lowest standard deviation with data (Y,X), where Y is a set N response variables and X is a set N predictor. With the Shine app, we will find it visually. Start with set number predictor variables to plot (Y,X) :
 <img src="assets/fig/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
+
+```
+## NULL
+```
 It keeps until we update (Y,X) with new random values. See next slide more about a line...
 
 --- .class #id 

@@ -13,10 +13,11 @@ knit        : slidify::knit2slides
 
 ## Start with creating data ... 
 We learn that Lineair Regression Line for the data with certain values of intercept and slope has got the lowest standard deviation with data (Y,X), where Y is a set N response variables and X is a set N predictor. With the Shine app, we will find it visually. Start with set number predictor variables to plot (Y,X) :
-```{r, echo=FALSE,results='markup',fig.width=5,fig.height=5,fig.align='center'}
-N<-50
+```{r, echo=FALSE,fig.width=5,fig.height=5,fig.align='center'}
+n<-50
 slope<-0.3
 interc<-5
+
 Data<- function(N){
       X<- rnorm( N, runif(1,-20,20), runif(1,5,40) )
       Y<-X*runif(N, 0, 1) + rnorm(N,-runif(1,-20,20),runif(1,1,20))
@@ -26,9 +27,10 @@ Data<- function(N){
 SD<-function(P,sl,int){
       return(sum((P[,2]-sl*P[,1]-int ) *(P[,2]-sl*P[,1]-int)))
 }
-data<-Data(N)
+data<-Data(n)
 sdv<-SD(data,slope,interc)
-plot(data, xlab="X",ylab="Y" )
+p<-plot(data, xlab="X",ylab="Y" )
+p
 ```
 It keeps until we update (Y,X) with new random values. See next slide more about a line...
 
@@ -36,8 +38,8 @@ It keeps until we update (Y,X) with new random values. See next slide more about
 
 ## ... and line
 Before finding Lineair Regression Line, a red Line is drawn with slope and intercept from sliders. With sliders we change values of slope and intercept, so we redraw red line. In the plot example, the line has got intercept=5 and slope=0.3.
-```{r, echo=FALSE,results='markup',fig.width=5,fig.height=5,fig.align='center'}
-plot(data, xlab="X",ylab="Y" )
+```{r, echo=FALSE,fig.width=5,fig.height=5,fig.align='center'}
+p<-plot(data, xlab="X",ylab="Y" )
 abline(interc,slope,col="red",lwd=5)
 ```
 At the Shiny app, we can read the standard deviation SD of our line below Plot window.
@@ -49,10 +51,10 @@ Then go to next slide ...
 ## Help for searching lowest standard deviation
 To find Lineair Regression Line, we have to got lowest SD globally, not locally.
 It is not easy to estimate visually. So there is Help is at the Shiny app: it "remembers" a lowest SD we found so far and it draws corresponding grey line.
-```{r, echo=FALSE,results='markup',fig.width=5,fig.height=5,fig.align='center'}
-plot(data, xlab="X",ylab="Y" )
-abline(interc-3,slope+0.5,col="red",lwd=5)
-abline(interc-5,slope+2,col="grey",lwd=2)
+```{r, echo=FALSE,fig.width=5,fig.height=5,fig.align='center'}
+p<-plot(data, xlab="X",ylab="Y" )
+abline(interc-3,slope-0.5,col="red",lwd=5)
+abline(interc-45,slope+2,col="grey",lwd=2)
 ```
 So if we are sure there is no more minimum, then we can draw line by going back to last found lowest SD. See next slide about a result...
 
@@ -61,9 +63,9 @@ So if we are sure there is no more minimum, then we can draw line by going back 
 ## Confirm our result
 When we are sure we create line with lowest SD value, then we compare our line with Linear Regression Line visually by checking Yes to show Lineair Regression Line as green line:
 ```{r, echo=FALSE,results='markup',fig.width=5,fig.height=5,fig.align='center'}
-plot(data, xlab="X",ylab="Y" )
-abline(interc-3,slope+0.5,col="red",lwd=5)
-abline(interc-5,slope+2,col="grey",lwd=2)
+p<-plot(data, xlab="X",ylab="Y" )
+abline(interc-3,slope-0.5,col="red",lwd=5)
+abline(interc-45,slope+2,col="grey",lwd=2)
 abline(lm(data[,2]~data[,1]),col="green",lwd=1)
 ```
 We see we found the minimum locally, since grey line and green line are not positioned equally...
